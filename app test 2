@@ -1,0 +1,30 @@
+import React from "react";
+//import "./styles.css";
+export default class App extends React.Component {
+constructor() {
+    super();
+    this.state = JSON.parse(window.localStorage.getItem('state')) || {
+      count: 0
+    }
+  }
+setState(state) {
+    window.localStorage.setItem('state', JSON.stringify(state));
+    super.setState(state);
+  }
+increaseCount = () => {
+    return this.setState({...this.state, count: this.state.count + 1});
+  }
+decreaseCount = () => {
+    return this.setState({...this.state, count: this.state.count - 1});
+  }
+render() {
+return (
+      <div className="App">
+        <h1> Park Point: Cleaned {this.state.count} times. Last cleaned on: </h1>
+	<input></input>
+        <button onClick={this.increaseCount}>+</button> 
+        <button onClick={this.decreaseCount}>-</button>
+      </div>
+    );
+}
+}
